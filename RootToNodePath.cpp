@@ -73,13 +73,18 @@ public:
             return false;
 
         ans.push_back(root->val);
+
         if (root->val == target)
             return true;
 
-        if (rootToNodePathHelper(root->left, target, ans) || rootToNodePathHelper(root->right, target, ans))
+        bool l = rootToNodePathHelper(root->left, target, ans);
+        bool r = rootToNodePathHelper(root->right, target, ans);
+
+        if (l || r)
             return true;
 
         ans.pop_back();
+
         return false;
     }
 };
